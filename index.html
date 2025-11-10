@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sobha's Designer Boutique</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --blush: #f6d6d9;
+      --beige: #f7efe6;
+      --gold: #c99b67;
+      --accent: #eecfd6;
+      --text: #3b3b3b;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background-color: #fff;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Navbar */
+    .navbar-brand { font-weight: 700; }
+    .navbar-nav .nav-link { font-weight: 500; }
+    .navbar-nav .nav-link.active { color: var(--gold) !important; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(180deg, rgba(246,214,217,0.4), rgba(247,239,230,0.6));
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      padding: 4rem 0;
+    }
+
+    .hero .badge-custom {
+      background: var(--gold);
+      color: white;
+      padding: .35rem .7rem;
+      border-radius: 1rem;
+      font-weight: 600;
+    }
+
+    /* Collections */
+    .card-figure {
+      border-radius: .75rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .card-figure:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-figure img {
+      transition: all 0.4s ease;
+    }
+
+    .card-figure:hover img {
+      filter: brightness(1.08);
+      transform: scale(1.03);
+    }
+
+    .collection-img {
+      height: 260px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    /* Appointment / Custom */
+    .appointment-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.8));
+      border-radius: 1rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    /* Testimonials */
+    .testimonial {
+      background: var(--beige);
+      padding: 1.25rem;
+      border-radius: .75rem;
+      transition: 0.3s ease;
+    }
+
+    .testimonial:hover {
+      background: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    footer {
+      background: #fff7f8;
+      padding: 2rem 0;
+    }
+
+    .object-fit-cover {
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 1rem;
+    }
+
+    /* Mobile (≤767px) */
+    @media (max-width: 767px) {
+      h1, h2, h3 { text-align: center; }
+      .hero { text-align: center; padding: 2rem 1rem; }
+      .btn { margin-bottom: .5rem; }
+      .collection-img { height: 220px; }
+      .navbar-brand img { width: 45px; height: 45px; }
+      .hero h1 { font-size: 1.9rem; }
+      .hero .row { flex-direction: column-reverse; }
+    }
+
+    /* Tablet (768px–991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .row.g-4 { gap: 2rem; }
+      .collection-img { height: 250px; }
+      .hero h1 { font-size: 2.2rem; }
+    }
+
+    /* Desktop (≥992px) */
+    @media (min-width: 992px) {
+      .hero { min-height: 70vh; }
+      .hero h1 { font-size: 3rem; }
+      .hero p { font-size: 1.1rem; }
+    }
+  </style>
+  <script>
+  document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop form reload
+
+    const form = e.target;
+    if (form.checkValidity()) {
+      // Show success message
+      document.getElementById('appointmentMessage').style.display = 'block';
+
+      // Reset form
+      form.reset();
+
+      // Auto-hide message after 5 seconds
+      setTimeout(() => {
+        document.getElementById('appointmentMessage').style.display = 'none';
+      }, 5000);
+    } else {
+      form.classList.add('was-validated');
+    }
+  });
+</script>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <div class="container">
+      <img src="S-LOGO.png" alt="Sobha's Designer Boutique Logo" width="55" height="55" class="me-2">
+      <h5 class="mb-0 fw-bold text-dark">
+        Sobha's <span class="text-warning fw-semibold">Designer Boutique</span>
+      </h5>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#collections">Collections</a></li>
+          <li class="nav-item"><a class="nav-link" href="#custom">Custom Design</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-3"><a class="btn btn-outline-dark btn-sm rounded-pill" href="#custom">Book Appointment</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-7 text-dark" data-aos="fade-right">
+          <span class="badge badge-custom mb-3 d-inline-block">Handcrafted • Bespoke</span>
+          <h1 class="display-5 fw-bold">Elegance Tailored for You</h1>
+          <p class="lead mb-4" style="max-width:640px">
+            Sobha's Designer Boutique crafts custom ethnic and contemporary women's wear — where premium fabrics meet expert tailoring and timeless style.
+          </p>
+          <a href="#collections" class="btn btn-lg rounded-pill" style="background:var(--gold);color:white;">Explore Collection</a>
+          <a href="#custom" class="btn btn-outline-secondary btn-lg rounded-pill ms-2">Book a Fitting</a>
+        </div>
+
+        <div class="col-md-5 col-12 d-block" data-aos="fade-left">
+          <div class="card shadow-sm border-0 overflow-hidden" style="border-radius: 1rem;">
+            <img src="fastion.webp" alt="Featured outfit" class="w-100 h-auto d-block object-fit-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6" data-aos="fade-up">
+          <h2>About Sobha's</h2>
+          <p class="mb-3">Founded by Sobha, our boutique celebrates handcrafted fashion and thoughtful design. We specialize in made-to-measure garments — from embroidered sarees and bridal lehengas to elegant gowns and everyday chic.</p>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="bi bi-patch-check-fill text-warning me-2"></i>Personal consultations & bespoke fittings</li>
+            <li class="mb-2"><i class="bi bi-fabric text-warning me-2"></i>Premium fabrics sourced ethically</li>
+            <li class="mb-2"><i class="bi bi-clock-history text-warning me-2"></i>Attention to detail and timely delivery</li>
+          </ul>
+        </div>
+        <div class="col-md-6" data-aos="zoom-in">
+          <div class="ratio ratio-4x3 rounded shadow-sm overflow-hidden">
+            <img src="boutique f1.jpg" alt="Studio" class="w-100 h-100 object-fit-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section id="collections" class="py-5 bg-white">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Collections</h2>
+        <a href="#" class="text-decoration-none">View all <i class="bi bi-arrow-right"></i></a>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-sm-6 col-md-4" data-aos="fade-left">
+          <div class="card card-figure shadow-sm">
+            <img src="bridel.jpg" class="collection-img" alt="Lehengas">
+            <div class="card-body">
+              <h5 class="card-title">Bridal & Festive Lehengas</h5>
+              <p class="card-text">Rich embroidery, luxe fabrics — made-to-measure for your special day.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4" data-aos="fade-up">
+          <div class="card card-figure shadow-sm">
+            <img src="sareee.jpeg" class="collection-img" alt="Sarees">
+            <div class="card-body">
+              <h5 class="card-title">Designer Sarees</h5>
+              <p class="card-text">Hand-embellished sarees that combine tradition with modern silhouettes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4" data-aos="fade-right">
+          <div class="card card-figure shadow-sm">
+            <img src="Evening Gowns & Cocktail.webp" class="collection-img" alt="Gowns">
+            <div class="card-body">
+              <h5 class="card-title">Evening Gowns & Cocktail</h5>
+              <p class="card-text">Tailored evening wear with premium finishing and fit.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4" data-aos="fade-up">
+          <div class="card card-figure shadow-sm">
+            <img src="Everyday Chic.jpg" class="collection-img" alt="Casual">
+            <div class="card-body">
+              <h5 class="card-title">Everyday Chic</h5>
+              <p class="card-text">Comfortable, stylish pieces for the modern wardrobe.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4" data-aos="fade-up">
+          <div class="card card-figure shadow-sm">
+            <img src="Indo-Western Fusion.jpg" class="collection-img" alt="Indo-Western">
+            <div class="card-body">
+              <h5 class="card-title">Indo-Western Fusion</h5>
+              <p class="card-text">Unique silhouettes that blend east and west sensibilities.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4" data-aos="fade-up">
+          <div class="card card-figure shadow-sm">
+            <img src="Fashion-Jewellery.jpg" class="collection-img" alt="Jewellery">
+            <div class="card-body">
+              <h5 class="card-title">Jewellery</h5>
+              <p class="card-text">Handcrafted necklaces, earrings, and bangles designed to complete your look.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="custom" class="py-5">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      
+      <!-- LEFT TEXT -->
+      <div class="col-lg-6" data-aos="fade-up">
+        <h2 class="fw-bold mb-3" style="font-family:'Playfair Display',serif;">Custom Design & Bespoke Tailoring</h2>
+        <p>Work one-on-one with <strong>Sobha</strong> to create a design that's entirely yours — select fabrics, trims, and final fit. 
+          We offer both <span class="text-warning fw-semibold">in-store</span> and <span class="text-warning fw-semibold">at-home fittings</span> (by appointment).</p>
+        <ul class="mb-3 list-unstyled">
+          <li class="mb-2"><i class="bi bi-palette2 text-warning me-2"></i>Fabric consultation & swatches</li>
+          <li class="mb-2"><i class="bi bi-rulers text-warning me-2"></i>Detailed measurement & fitting schedule</li>
+          <li class="mb-2"><i class="bi bi-scissors text-warning me-2"></i>Alterations & final finishing</li>
+        </ul>
+      </div>
+
+      <!-- RIGHT FORM -->
+      <div class="col-lg-6" data-aos="zoom-in-up">
+        <div class="p-4 appointment-card border-0 shadow-lg" style="border-radius:1rem;">
+          <h5 class="mb-3 fw-semibold text-dark">Book an Appointment</h5>
+
+          <form id="appointmentForm" novalidate>
+            <div class="mb-3">
+              <label for="name" class="form-label fw-semibold">Full name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label fw-semibold">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="example@email.com" required>
+              <div class="invalid-feedback">Please provide a valid email.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="phone" class="form-label fw-semibold">Phone (WhatsApp preferred)</label>
+              <input type="number" class="form-control" id="phone" pattern="[0-9]{10}" maxlength="10" placeholder="Enter 10-digit number" required>
+              <div class="invalid-feedback">Please provide a valid phone number.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="service" class="form-label fw-semibold">Service</label>
+              <select id="service" class="form-select" required>
+                <option selected disabled value="">Choose service</option>
+                <option>Custom Bridal</option>
+                <option>Festive Outfit</option>
+                <option>Evening Wear</option>
+                <option>Casual / Everyday</option>
+              </select>
+              <div class="invalid-feedback">Please select a service.</div>
+            </div>
+
+            <div class="d-grid">
+              <button class="btn btn-dark rounded-pill" type="submit">
+                <i class="bi bi-calendar-check me-2"></i>Request Appointment
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Message -->
+          <div id="appointmentMessage" class="alert alert-success mt-4 fade show" style="display:none; border-radius:1rem;">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            Your appointment request has been sent successfully! 🎉 We’ll contact you soon.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<script>
+  document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop form reload
+
+    const form = e.target;
+    if (form.checkValidity()) {
+      // Show success message
+      document.getElementById('appointmentMessage').style.display = 'block';
+
+      // Reset form
+      form.reset();
+
+      // Auto-hide message after 5 seconds
+      setTimeout(() => {
+        document.getElementById('appointmentMessage').style.display = 'none';
+      }, 5000);
+    } else {
+      form.classList.add('was-validated');
+    }
+  });
+</script>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="mb-4">What Clients Say</h2>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up-left">
+          <div class="testimonial">
+            <p>"Absolutely in love with my wedding lehenga. The fit and embroidery were perfection."</p>
+            <strong>Sana K.</strong><div class="text-muted small">Bride</div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="testimonial">
+            <p>"The bespoke gown fit like a dream. Sobha understood exactly what I wanted."</p>
+            <strong>Rhea M.</strong><div class="text-muted small">Designer</div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up-right">
+          <div class="testimonial">
+            <p>"Great attention to detail and very timely. I recommend them for festive wear."</p>
+            <strong>Priya N.</strong><div class="text-muted small">Customer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="contact" class="py-5" style="background: linear-gradient(135deg, #fdfcfb, #e2d1c3);">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-down">
+      <h2 class="fw-bold display-6 text-dark">Get in Touch</h2>
+      <p class="text-muted">We’d love to hear from you — whether it’s about a custom design, feedback, or collaboration.</p>
+      <div class="underline mx-auto mb-3" style="width: 60px; height: 3px; background: #000;"></div>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+      
+      <!-- LEFT: CONTACT INFO -->
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="h-100 d-flex flex-column justify-content-between p-4 rounded-4 shadow-lg" style="background: #fff;">
+          <div>
+            <h4 class="fw-semibold mb-3">Visit or Contact Us</h4>
+            <p><strong>Address:</strong> Sowmya Nivas, Vennakara, Puthupariyaram, Palakkad, Kerala 678731</p>
+            <p><strong>Phone:</strong> <a href="tel:+916235704421" class="text-dark text-decoration-none">+91 6235704421</a> (WhatsApp)</p>
+            <p><strong>Email:</strong> <a href="mailto:sowravs16@gmail.com" class="text-dark text-decoration-none">sowravs16@gmail.com</a></p>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn btn-outline-dark rounded-pill px-3" href="#"><i class="bi bi-instagram me-2"></i>Instagram</a>
+              <a class="btn btn-outline-dark rounded-pill px-3" href="#"><i class="bi bi-facebook me-2"></i>Facebook</a>
+              <a class="btn btn-outline-dark rounded-pill px-3" href="#"><i class="bi bi-whatsapp me-2"></i>WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="ratio ratio-16x9 mt-4 rounded overflow-hidden shadow-sm">
+            <iframe src="https://www.google.com/maps?q=palakkad,%20kerala&output=embed" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: CONTACT FORM -->
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="p-4 rounded-4 shadow-lg bg-white h-100">
+          <h4 class="fw-semibold mb-3">Quick Message</h4>
+          <form id="contactForm" novalidate>
+            <div class="mb-3">
+              <label for="contactName" class="form-label fw-semibold">Full Name</label>
+              <input type="text" class="form-control" id="contactName" placeholder="Your Name" required>
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="contactEmail" class="form-label fw-semibold">Email</label>
+              <input type="email" class="form-control" id="contactEmail" placeholder="example@email.com" required>
+              <div class="invalid-feedback">Please enter a valid email.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="contactMsg" class="form-label fw-semibold">Message</label>
+              <textarea id="contactMsg" class="form-control" rows="4" placeholder="Write your message..." required></textarea>
+              <div class="invalid-feedback">Please enter your message.</div>
+            </div>
+
+            <div class="d-grid">
+              <button class="btn btn-dark rounded-pill py-2" type="submit" id="sendBtn">
+                <i class="bi bi-send me-2"></i><span>Send Message</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- SUCCESS MESSAGE -->
+          <div id="contactMessage" class="alert alert-success mt-4 fade" style="border-radius:1rem; display:none;">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            Message sent successfully! 💌 We’ll reply soon.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✨ JavaScript for Form Validation + Animated Success Message -->
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const successMsg = document.getElementById('contactMessage');
+    const sendBtn = document.getElementById('sendBtn');
+
+    if (form.checkValidity()) {
+      // Button animation
+      sendBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Sent!';
+      sendBtn.disabled = true;
+
+      // Show success message with fade-in
+      successMsg.style.display = 'block';
+      setTimeout(() => successMsg.classList.add('show'), 100);
+
+      // Reset form
+      form.reset();
+
+      // Hide after 5 seconds with fade-out
+      setTimeout(() => {
+        successMsg.classList.remove('show');
+        setTimeout(() => successMsg.style.display = 'none', 500);
+        sendBtn.innerHTML = '<i class="bi bi-send me-2"></i><span>Send Message</span>';
+        sendBtn.disabled = false;
+      }, 5000);
+    } else {
+      form.classList.add('was-validated');
+    }
+  });
+</script>
+
+<!-- ✨ Optional CSS Enhancement -->
+<style>
+  #contactForm .form-control {
+    border-radius: 1rem;
+    box-shadow: none;
+    transition: all 0.3s ease;
+  }
+  #contactForm .form-control:focus {
+    border-color: #000;
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.1);
+  }
+  #contactMessage.fade.show {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+  }
+  #contactMessage.fade {
+    opacity: 0;
+  }
+  .btn-dark:hover {
+    background-color: #222;
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+  }
+</style>
+
+
+  <!-- FOOTER -->
+  <footer class="text-center small text-muted">
+    <p class="mb-0">© 2025 Sobha's Designer Boutique. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 900, once: true });
+  </script>
+</body>
+</html>
